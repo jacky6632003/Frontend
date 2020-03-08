@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #bo {
+            /* 如果將寬高設為0，就可以形成一個有四個三角形的正方形 */
+            width: 100px;
+            height: 100px;
+            /* transparent：透明的 */
+            border: 100px solid transparent;
+
+            border-top-color: deeppink;
+            border-left-color: red;
+            border-right-color: blue;
+            border-bottom-color: black;
+        }
+
+        #box {
+            width: 0px;
+            height: 0px;
+
+            border: 100px solid transparent;
+
+            border-top-color: deeppink;
+            border-left-color: deeppink;
+            /*border-right-color: deeppink;*/
+            /*border-bottom-color: deeppink;*/
+        }
+    </style>
+</head>
+
+<body>
+    <div id="bo"></div>
+    <br />
+    <div id="box"></div>
+</body>
+
+</html>

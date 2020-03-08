@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Foo() {
+            getName = function () {
+                console.log(1);
+            };
+            return this;
+        }
+        Foo.getName = function () {
+            console.log(2);
+        };
+        Foo.prototype.getName = function () {
+            console.log(3);
+        };
+        var getName = function () {
+            console.log(4);
+        };
+
+        function getName() {
+            console.log(5);
+        }
+        Foo.getName(); //2
+        getName(); //4
+        Foo().getName(); //1
+        getName(); //1
+        new Foo.getName(); //2
+        new Foo().getName(); //3
+        /*  1、Foo.getName()
+
+         Foo的靜態方法優先級高於方法內部定義，調用Foo.getName()，輸出2。
+
+    2、getName()       
+
+        function getName()變量提升，聲明後被var getName = function(){...}覆蓋，輸出4。
+
+   3、Foo().getName()
+
+       調用Foo()函數，返回的this，則當前的全局window變為Foo內部的this，再調用getName()時就調用Foo內的getName()，輸出1。
+
+    4、getName()
+
+        由於第三步已經將Foo的this覆蓋了window，調用getName()時，仍然是調用Foo.getName()，輸出1,。
+
+    5、new Foo.getName()
+
+        等價於new(Foo.getName())，先執行Foo.getName()，輸出2，再創建Foo.getName()實例的方法。
+
+    6、new Foo().getName()
+
+        相當於（new Foo()）.getName()，先創建Foo的實例，調用實例的getName()方法，由於自身沒有該方法，去原型鏈上找，它的原型指向構造函數的prototype，即調用Foo.prototype.getName()，輸出3。
+
+    7、new  new Foo().getName()
+
+        相當於new（new Foo().getName()），即先執行new Foo().getName(),由於第六步可知，輸出3。再創建Foo.prototype.getName()這個函數的實例返回。
+
+知識點：        
+
+為什麽new Foo().getName()先運算new Foo()，而new Foo.getName()是先運算Foo.getName？
+對照優先級，看這兩個的區別：
+
+new Foo() 屬於new（帶參數列表）
+new Foo屬於new（無參數列表）
+無參數列表的優先級為18，而成員訪問的優先級為19，高於無參數列表。因此new Foo.getName()先執行Foo.getName()
+
+帶參數列表的優先級為19，而成員訪問的優先級也為19，按照運算符規則（同一優先級，按照從左向右的執行順序），new Foo().getName()先執行new Foo()，再對new之後的實例進行成員訪問.getName()操作。
+這是js運算符的優先級鏈接，可查看每個運算符的優先級。 */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 1rem;
+            height: 1rem;
+            background: deeppink;
+        }
+
+        /*
+        html根元素字體大小設置屏幕區域的寬
+            這個必須配合 上面的 lang="en" .
+        */
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+</body>
+<script type="text/javascript">
+    //獲取屏幕寬度
+    var width = document.documentElement.clientWidth;
+    //獲取html
+    var htmlNode = document.querySelector('html');
+    //設置html字體大小
+    htmlNode.style.fontSize = width + 'px';
+</script>
+
+</html>

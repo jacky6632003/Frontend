@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrap {
+            width: 500px;
+            height: 500px;
+            background: grey;
+            position: relative;
+        }
+        #box{
+            width: 200px;
+            height: 200px;
+            background: deeppink;
+            
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* 使box盒子自身上移50%；左移50%；完成完美居中 */
+            transform: translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="box"></div>
+</div>
+</body>
+</html>

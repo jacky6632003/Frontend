@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>什麽是函數節流？什麽是函數防抖？</title>
+    <link type="text/css" rel="stylesheet" href=" "/>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html,body{
+            height: 800px;
+        }
+    </style>
+
+</head>
+<body>
+<button id="btn">怕你點壞了</button>
+<!--
+<script type="text/javascript">
+    window.onload = function () {
+
+    }
+</script>
+-->
+<script type="text/javascript">
+    /*
+     函數節流：一個函數執行一次後，只有大於設定的執行周期後才會執行第二次。
+     - 有個需要頻繁觸發函數，出於優化性能角度，在規定時間內，只讓函數觸發的第一次生效，後面不生效
+     */
+    /*
+     節流函數
+     @param fn 要被節流的函數
+     @param delay 規定的時間
+     */
+    function throttle(fn,delay){
+        //記錄上一次函數觸發的時間
+        var lastTime = 0;
+
+        return function(){
+            //記錄當前函數觸發的時間
+            var nowTime = Date.now();
+
+            if(nowTime - lastTime > delay){
+                //修正this指向問題
+                //fn();
+                fn.call(this);
+                //同步時間
+                lastTime = nowTime;
+            }
+        }
+    }
+    document.onscroll = throttle(function(){console.log('scroll滾輪事件被觸發了' + Date.now());},200)
+
+    /*
+     防抖函數：一個需要頻繁觸發的函數，在規定時間內，只讓最後一次生效，前面的不生效
+     -- 其實就是怕你拼命點擊（怕程序崩潰），只讓最後一次點擊生效
+     */
+    function debounce(fn,delay){
+        //記錄上一次的延時器
+        var timer = null;
+        return function(){
+            //清除上一次延時器
+            clearInterval(timer);
+            //重新設置新的延時器
+            timer = setTimeout(function(){
+                fn.apply(this);
+            },delay);
+        }
+    }
+    document.getElementById('btn').onclick = debounce(function(){console.log('點擊事件被觸發了' + Date.now());},1000);
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* yield
+
+既可傳參，又可以返回
+第一個next()傳參無效，只用來啟動
+如果函數前漏掉 *
+
+就是普通函數
+如果有yield會報錯， ReferenceError: yield is not defined
+yield 只能在Generator函數內部使用 */
+
+        function* show() {
+            console.log('1')
+            var a = yield
+            console.log('2')
+            console.log(a)
+        }
+        // yield 傳參
+        var gen = show()
+        gen.next() // 1
+        gen.next() // 2 和 undefined 因為沒有傳參，yield沒有返回值
+        var gen = show()
+        gen.next(10) // 1 第一次執行到yield，但沒有執行賦值
+        gen.next(20) // 2 和 20
+
+        function* show2() {
+            console.log('1')
+            yield 10
+            console.log('2')
+        }
+        // yield 返回
+        var gen = show2()
+        var res1 = gen.next()
+        console.log(res1) // { value: 10, done: false }
+        var res2 = gen.next()
+        console.log(res2)
+        // { value: undefined, done: true } 最後的value需要return返回
+    </script>
+</body>
+
+</html>

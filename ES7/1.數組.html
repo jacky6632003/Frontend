@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*   arr.includes() 數組是否包含某個東西
+數組的 arr.keys(), arr,entries()
+for ... in 遍歷數組 下標 key
+for ... of 遍歷數組 值 value, 不能用於json */
+
+        let arr = ['a', 'b', 'c']
+        console.log(arr.includes(1))
+
+        for (let i in arr) {
+            console.log(i) // 循環的時下標 key
+        }
+
+        for (let i of arr) {
+            console.log(i) // 循環的是值 value
+        }
+        for (let i of arr.keys()) {
+            console.log('>' + i)
+        }
+        for (let [key, value] of arr.entries()) {
+            console.log('>' + key + value)
+        }
+
+        let json = {
+            a: 12,
+            b: 5,
+            c: 7
+        }
+        for (let i in json) {
+            console.log(i)
+        }
+    </script>
+</body>
+
+</html>

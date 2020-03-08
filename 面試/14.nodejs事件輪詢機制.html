@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        setImmediate(function () {
+            console.log('setImmediate()');
+        });
+        setTimeout(function () {
+            console.log('setTimeout()');
+        }, 0);
+        process.nextTick(function () {
+            console.log('process.nextTick()');
+        });
+
+        /*
+         process.nextTick()
+         setTimeout()
+         setImmediate()
+        */
+        /*
+            nodejs的事件輪詢機制：借助libuv庫實現的
+            概括事件輪詢機制，分為6個階段：
+                1、timers 定時器階段
+                   計時和執行到點的定時器回調函數
+                2、pending callbacks
+                   某些系統操作（例如TCP錯誤類型） 的回調函數
+                3、idle，prepare
+                    準備工作
+                4、poll輪詢階段（輪詢隊列） （順序）
+                    如果輪詢隊列不為空，依次同步取出輪詢隊列中第一個回調函數，直到輪詢隊列為空或達到系統最大的限制
+                    如果輪詢隊列為空
+                        如果之前設置過setImmediate函數
+                            直接進入下一個check階段
+                        如果之前沒有設置過setImmediate函數
+                            在當前poll階段等待
+                                直到輪詢隊列添加回調函數，就去第一個情況執行
+                                如果定時器到點了，也會去下一個階段
+                 5、check查階段
+                    執行setImmediate設置的回調函數
+                 6、close callbacks 閉關階段
+                    執行close事件回調函數
+
+         process.nextTick 能在任意階段優先執行 
+         */
+    </script>
+</body>
+
+</html>

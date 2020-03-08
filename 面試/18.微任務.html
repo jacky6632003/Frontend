@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //主線程直接執行
+        console.log('1');
+        //丟到宏事件隊列中
+        setTimeout(function () {
+            console.log('2');
+            process.nextTick(function () {
+                console.log('3');
+            })
+            new Promise(function (resolve) {
+                console.log('4');
+                resolve();
+            }).then(function () {
+                console.log('5')
+            })
+        })
+        //微事件1
+        process.nextTick(function () {
+            console.log('6');
+        })
+        //主線程直接執行
+        new Promise(function (resolve) {
+            console.log('7');
+            resolve();
+        }).then(function () {
+            //微事件2   
+            console.log('8')
+        })
+        //丟到宏事件隊列中
+        setTimeout(function () {
+            console.log('9');
+            process.nextTick(function () {
+                console.log('10');
+            })
+            new Promise(function (resolve) {
+                console.log('11');
+                resolve();
+            }).then(function () {
+                console.log('12')
+            })
+        })
+
+        /*    這道題目就是主要考察的是面試者對宏任務和微任務的理解，以及執行順序的閱讀能力針對這到代碼閱讀題，代碼的執行順序如下：
+           • 首先瀏覽器執行js進入第一個宏任務進入主線程, 直接打印console.log('1')
+           • 遇到 setTimeout  分發到宏任務Event Queue中• 遇到 process.nextTick 丟到微任務Event Queue中
+           • 遇到 Promise， new Promise 直接執行 輸出 console.log('7');
+           • 執行then 被分發到微任務Event Queue中•第一輪宏任務執行結束，開始執行微任務 打印 6,8
+           •第一輪微任務執行完畢，執行第二輪宏事件，執行setTimeout
+           •先執行主線程宏任務，在執行微任務，打印'2,4,3,5'
+           •在執行第二個setTimeout,同理打印 ‘9,11,10,12’
+           •整段代碼，共進行了三次事件循環，完整的輸出為1，7，6，8，2，4，3，5，9，11，10，12。 */
+    </script>
+</body>
+
+</html>

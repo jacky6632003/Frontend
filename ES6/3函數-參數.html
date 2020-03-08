@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        
+        /* 參數擴展／展開 ...args
+收集剩余的參數，必須當到最後一個參數位置
+展開數組，簡寫，效果和直接把數組的內容寫在這兒一樣
+默認參數 */
+        function show(a, b, ...args) {
+            console.log(a)
+            console.log(b)
+            console.log(args)
+        }
+        console.log(show(1, 2, 3, 4, 5))
+
+        let arr1 = [1, 2, 3]
+        let arr2 = [4, 5, 6]
+        let arr3 = [...arr1, ...arr2]
+        console.log(arr3)
+
+        function show2(a, b = 5, c = 8) {
+            console.log(a, b, c)
+        }
+        show2(88, 12)
+    </script>
+</body>
+
+</html>

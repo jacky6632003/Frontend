@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+    變量升級 預處理
+  */
+        /*
+          js引擎在代碼正式執行之前會做一個預處理的工作：
+            1.收集變量
+            2.收集函數
+            依據：
+              var 將var後邊的變量定義但不賦值 var username=undefined;
+              function(){}
+        */
+        console.log(username); //答案：underfined
+        var username = 'kobe';
+        console.log(username) //kobe
+
+        fun(); //答案：正常執行函數
+        function fun() {
+            console.log('fun()');
+        }
+        /*
+    作用域：作用域是在代碼定義的時候產生的
+    //執行上下文 執行上下文對象（this）
+ 
+    執行上下文(excute context) EC
+    理解：代碼執行的環境
+    時機(產生時)：代碼正式執行之前會進入到執行環境
+    工作：
+      1.創建變量對象：
+        1)變量
+        2)函數及函數的參數
+        3)全局：window
+        4)局部：抽象的但是確實存在
+      2.確認this的指向
+        1)全局：this --->window
+        2)局部：this --->調用其的對象
+      3.創建作用域鏈
+        父級作用域鏈+當前的變量對象
+      4.擴展
+      ECobj={
+        變量對象：{變量，函數，函數的形參}
+        scopeChain(作用域鏈):父級作用域鏈+當前的變量對象
+        this:{window || 調用其的對象}
+      }
+  */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*  Promise 適合一次讀一組
+generator 適合邏輯性的 */
+
+        // 帶邏輯-generator
+        runner(function* () {
+            let userData = yield $.ajax({
+                url: 'getUserData'
+            })
+
+            if (userData.type == 'VIP') {
+                let items = yield $.ajax({
+                    url: 'getVIPItems'
+                })
+            } else {
+                let items = yield $.ajax({
+                    url: 'getItems'
+                })
+            }
+        })
+        // yield 實例，用同步方式寫異步
+        server.use(function* () {
+            let data = yield db.query(`select * from user_table`)
+            this.body = data
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- initial-scale=1.0 縮放比 當為1的時候沒用進行任何縮放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1px物理像素實現(方案一)</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-bottom: 1px solid #000;
+        }
+    </style>
+    <!-- 像素比 = 物理像素 / css像素 -->
+</head>
+
+<body>
+    <div id="box"></div>
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        //像素比是什麽？針對不同屏幕 dpr不一樣
+        var dpr = window.devicePixelRatio;
+        console.log(dpr);
+        //縮放比例
+        var scale = 1 / dpr;
+        //可視區域的寬度
+        var width = document.documentElement.clientWidth;
+        //獲取mate標簽
+        var metaNode = document.querySelector('meta[name="viewport"]');
+        metaNode.setAttribute('content',"width=device-width, initial-scale='+scale+'");
+
+        //頁面中元素的寬度，高度，比例得反向乘回來
+        var htmlNode = document.querySelector('html');
+        htmlNode.style.fontSize = width * dpr + 'px';
+
+    }
+</script>
+</html>

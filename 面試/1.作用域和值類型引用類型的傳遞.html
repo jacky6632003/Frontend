@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        /* 作用域：
+　　1. 全局作用域
+　　　　-直接寫在script標籤中的代碼（不是在函數中var的變量）擁有
+　　　　-在頁面中的任意部分都可以訪問到
+　　2. 函數作用域
+　　　　-在函數中var的變量擁有
+　　　　-在函數中，不使用var聲明的變量都會成為全局變量 */
+
+
+        //全局作用域
+        var num1 = 55;
+        var num2 = 66; //100
+
+        function f1(a, b) {
+            //局部作用域
+            // var a=55;    這行和下一行都是看不見的。在沒有調用函數之前，只var a 和 b ,就是聲明了參數 a 和 b.
+            // var b = 66;
+            a = 100; //100
+            b = 100; //100
+            num2 = 100; //100   這裏其實是改變了全局變量 num2
+            console.log(a); //100
+            console.log(b); //100
+            console.log(num2); //100
+        }
+        //  55    66
+        f1(num1, num2);
+        console.log(num1); //55
+        console.log(num2); //100
+        console.log(a); // 報錯
+
+        /*    2.值類型引用類型的傳遞： */
+
+        // 第2題值類型和引用類型的傳遞
+
+        function Person(name, age, salary) {
+            this.name = name;
+            this.age = age;
+            this.salary = salary;
+        }
+
+        function f1(personName) {
+            // var personName = p; 
+            personName.name = "ls";
+            personName = new Person("aa", 18, 10); // 定義一個新person 
+            console.log(personName); // Person {name: "aa", age: 18, salary: 10} 
+        }
+
+        var p = new Person("zs", 18, 1000);
+        console.log(p.name); // zs 
+        f1(p);
+        console.log(p.name); // ls 
+        console.log(p); // Person {name: "ls", age: 18, salary: 1000}
+    </script>
+</body>
+
+</html>

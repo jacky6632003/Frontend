@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+         * 1.創建一個新數組,把原數組中的第一個元素插入到新數組中
+         * 2.遍歷原數組中的每一個元素分別和新數組中的每一個元素進行比較
+         */
+        // 原數組
+        var arr = [8, 11, 20, 5, 20, 8, 0, 2, 4, 0, 8];
+        // 新數組
+        var t = []; // var t = [8 ,11]; 
+        t[0] = arr[0];
+        // arr中的每個元素
+        for (var i = 0; i < arr.length; i++) {
+            // t中的每個元素
+            for (var k = 0; k < t.length; k++) {
+
+                // 當原數組中的值和新數組中的值相同的時候,就沒有必要再繼續比較了,跳出內循環
+                if (t[k] == arr[i]) {
+                    break;
+                }
+                // 拿原數組中的某個元素比較到新數組中的最後一個元素還沒有重複
+                if (k == t.length - 1) {
+                    // 將數據插入新數組
+                    t.push(arr[i]);
+                }
+            }
+        }
+        console.log(t);
+
+
+        //方法2
+        // 每一個元素和其右邊元素都對比下，如果相同，則刪除後面那個元素
+        var arrNew = [3, 6, 23, 7, 9, 4, 7, 4];
+        for (var i = 0; i < arrNew.length; ++i) {
+            for (var j = i + 1; j < arrNew.length; ++j) {
+                if (arrNew[i] == arrNew[j]) {
+                    arrNew.splice(j, 1);
+                    j--;
+                }
+            }
+        }
+        console.log(arrNew);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        window.onload = function () {
+            /*
+            什麽是跨域？ 估計類似偷渡。 解決跨域的辦法有哪些？
+    
+            1.同源策略
+              - 是瀏覽器安全策略
+              - 協議名、域名、端口號必須完全一致
+            2.跨域
+              -違背同源策略就會產生跨域
+            3.解決跨域
+              - jsonp cors 服務器代理...
+          */
+
+            //創建script標簽
+            var script = document.createElement('script');
+            //設置回調函數
+            function getData(data) {
+                //數據請求回來會被觸發的函數
+                console.log(data);
+            }
+            //設置script的src屬性，設置請求地址
+            script.src = 'http://localhost:63342?callback=getData';
+            //讓script生效
+            document.body.appendChild(script);
+        }
+    </script>
+</body>
+
+</html>

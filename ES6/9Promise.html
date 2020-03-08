@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 異步和同步
+
+異步，操作之間沒有關系，同時執行多個操作， 代碼覆雜
+同步，同時只能做一件事，代碼簡單
+Promise 對象
+
+用同步的方式來書寫異步代碼
+Promise 讓異步操作寫起來，像在寫同步操作的流程，不必一層層地嵌套回調函數
+改善了可讀性，對於多層嵌套的回調函數很方便
+充當異步操作與回調函數之間的中介，使得異步操作具備同步操作的接口
+Promise 也是一個構造函數
+
+接受一個回調函數f1作為參數，f1裏面是異步操作的代碼
+返回的p1就是一個 Promise 實例
+所有異步任務都返回一個 Promise 實例
+Promise 實例有一個then方法，用來指定下一步的回調函數 */
+
+        function f1(resolve, reject) {
+            // 異步代碼...
+        }
+        var p1 = new Promise(f1);
+        p1.then(f2); // f1的異步操作執行完成，就會執行f2。
+
+        /* Promise 使得異步流程可以寫成同步流程 */
+
+        // 傳統寫法
+        step1(function (value1) {
+            step2(value1, function (value2) {
+                step3(value2, function (value3) {
+                    step4(value3, function (value4) {
+                        // ...
+                    });
+                });
+            });
+        });
+
+        // Promise 的寫法
+        (new Promise(step1))
+        .then(step2)
+            .then(step3)
+            .then(step4);
+
+        /*   Promise.all(promiseArray)方法
+        將多個Promise對象實例包裝，生成並返回一個新的Promise實例
+        promise數組中所有的promise實例都變為resolve的時候，該方法才會返回
+        並將所有結果傳遞results數組中
+        promise數組中任何一個promise為reject的話，則整個Promise.all調用會立即終止，並返回一個reject的新的promise對象 */
+
+        var p1 = Promise.resolve(1),
+            p2 = Promise.resolve(2),
+            p3 = Promise.resolve(3);
+        Promise.all([p1, p2, p3]).then(function (results) {
+            console.log(results); // [1, 2, 3]
+        });
+
+        /* Promise.race([p1, p2, p3])
+        Promse.race就是賽跑的意思
+        哪個結果獲得的快，就返回那個結果
+        不管結果本身是成功狀態還是失敗狀態 */
+    </script>
+</body>
+
+</html>

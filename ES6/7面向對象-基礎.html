@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*  原來寫法
+            類和構造函數一樣
+            屬性和方法分開寫的
+ */
+        // 老版本
+        function User(name, pass) {
+            this.name = name
+            this.pass = pass
+        }
+
+        User.prototype.showName = function () {
+            console.log(this.name)
+        }
+        User.prototype.showPass = function () {
+            console.log(this.pass)
+        }
+
+        var u1 = new User('able', '1233')
+        u1.showName()
+        u1.showPass()
+        // 老版本繼承
+        function VipUser(name, pass, level) {
+            User.call(this, name, pass)
+            this.level = level
+        }
+        VipUser.prototype = new User()
+        VipUser.prototype.constructor = VipUser
+        VipUser.prototype.showLevel = function () {
+            console.log(this.level)
+        }
+
+        var v1 = new VipUser('blue', '1234', 3)
+        v1.showName()
+        v1.showLevel()
+
+
+        /*  新版面向對象
+            有了 class 關鍵字、構造器
+            class 裏面直接加方法
+            繼承，super 超類==父類 */
+
+        class User {
+            constructor(name, pass) {
+                this.name = name
+                this.pass = pass
+            }
+
+            showName() {
+                console.log(this.name)
+            }
+            showPass() {
+                console.log(this.pass)
+            }
+        }
+
+        var u1 = new User('able2', '111')
+        u1.showName()
+        u1.showPass()
+
+        // 新版本繼承
+        class VipUser extends User {
+            constructor(name, pass, level) {
+                super(name, pass)
+                this.level = level
+            }
+            showLevel() {
+                console.log(this.level)
+            }
+        }
+
+        v1 = new VipUser('blue', '123', 3)
+        v1.showLevel()
+    </script>
+</body>
+
+</html>

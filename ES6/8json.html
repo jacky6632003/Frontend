@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*  JSON 格式
+
+JavaScript Object Notation 的縮寫，是一種用於數據交換的文本格式
+JSON 是 JS對象 的嚴格子集
+JSON 的標準寫法
+只能用雙引號
+所有的key都必須用雙引號包起來
+JSON 對象
+
+JSON 對象是 JavaScript 的原生對象，用來處理 JSON 格式數據，有兩個靜態方法
+JSON.parse(string) ：接受一個 JSON 字符串並將其轉換成一個 JavaScript 對象。
+JSON.stringify(obj) ：接受一個 JavaScript 對象並將其轉換為一個 JSON 字符串。 */
+
+        var json = {
+            a: 12,
+            b: 5
+        }
+        var str = 'hi,' + JSON.stringify(json)
+        var url = 'http://www.xx.com/' + encodeURIComponent(JSON.stringify(json))
+        console.log(str)
+        console.log(url)
+
+        var str = '{"a": 12, "b": 4, "c": "abc"}'
+        var json = JSON.parse(str)
+        console.log(json)
+        hi, {
+            "a": 12,
+            "b": 5
+        }
+        http: //www.xx.com/%7B%22a%22%3A12%2C%22b%22%3A5%7D
+            {
+                a: 12,
+                b: 4,
+                c: 'abc'
+            }
+
+        /* 對象（object）
+
+是 JavaScript 語言的核心概念，也是最重要的數據類型
+對象就是一組“鍵值對”（key-value）的集合，是一種無序的覆合數據集合
+對象的所有鍵名都是字符串, 所以加不加引號都可以
+如果鍵名是數值，會被自動轉為字符串
+對象的每一個鍵名又稱為“屬性”（property），它的“鍵值”可以是任何數據類型
+如果一個屬性的值為函數，通常把這個屬性稱為“方法”，它可以像函數那樣調用
+in 運算符用於檢查對象是否包含某個屬性（註意，檢查的是鍵名，不是鍵值
+for...in循環用來遍歷一個對象的全部屬性
+對象 簡寫
+
+key-value 一樣時可以簡寫
+裏面函數可以簡寫, 去掉 */
+
+        var a = 12,
+            b = 5
+        console.log({
+            a: a,
+            b: b
+        })
+        console.log({
+            a,
+            b
+        })
+        console.log({
+            a,
+            b,
+            c: "c"
+        })
+        console.log({
+            a,
+            b,
+            show() {
+                console.log('a')
+            }
+        }) {
+            a: 12,
+            b: 5
+        } {
+            a: 12,
+            b: 5
+        } {
+            a: 12,
+            b: 5,
+            c: 'c'
+        } {
+            a: 12,
+            b: 5,
+            show: [Function: show]
+        }
+    </script>
+</body>
+
+</html>

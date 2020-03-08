@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*  解構賦值
+左右兩個邊結構必須一樣
+右邊必須是個東西
+聲明和賦值賦值不能分開，必須在一句話裏
+*/
+
+        let [a, b, c] = [1, 2, 3]
+        console.log(a, b, c)
+
+        let {
+            x,
+            y,
+            z
+        } = {
+            x: 1,
+            y: 2,
+            z: 3
+        }
+        console.log(x, y, z)
+
+        let [json, arr, num, str] = [{
+                a: 1,
+                b: 2
+            },
+            [1, 2, 3], 8, 'str'
+        ]
+        console.log(json, arr, num, str)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       /*  generator 生成器函數
+普通函數，一路到底
+generator函數，中間可以停，到哪停呢，用 yield 配合，交出執行權
+yield 有 放棄、退讓、退位的意思
+需要調用next()方法啟動執行，需要遇到 yield 停, 踹一腳走一步
+generator函數前面加一個 * 兩邊可以有空格，或靠近函數或function
+背後實際生成多個小函數，實現走走停停 */
+
+function show() {
+    console.log('a')
+    console.log('b')
+}
+show() // 普通函數
+
+function *show2() {
+    console.log('1')
+    yield
+    console.log('2')
+}
+let genObj = show2()
+genObj.next() // 1
+genObj.next() // 2
+genObj.next() // 最後了，沒有結果
+    </script>
+</body>
+</html>

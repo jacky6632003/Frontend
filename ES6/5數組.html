@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*  新增4個方法
+map 映射 一個對一個 */
+        let arr = [12, 5, 8]
+        let result = arr.map(function (item) {
+            return item * 2
+        })
+        let result2 = arr.map(item => item * 2) // 簡寫
+        console.log(result)
+        console.log(result2)
+
+        let score = [18, 86, 88, 24]
+        let result3 = score.map(item => item >= 60 ? '及格' : '不及格')
+        console.log(result3)
+
+        // 結果
+        [24, 10, 16]
+        [24, 10, 16]
+        ['不及格', '及格', '及格', '不及格']
+
+
+
+        /*  reduce 匯總 一堆出來一個
+用於比如，算個總數，算個平均 */
+
+        var arr = [1, 3, 5, 7]
+        var result = arr.reduce(function (tmp, item, index) {
+            //tmp 上次結果，item當前數，index次數1開始
+            console.log(tmp, item, index)
+            return tmp + item
+        })
+        console.log(result)
+
+        var arr = [1, 3, 5, 7]
+        var result = arr.reduce(function (tmp, item, index) {
+            if (index != arr.length - 1) { // 不是最後一次
+                return tmp + item
+            } else {
+                return (tmp + item) / arr.length
+            }
+        })
+        console.log(result) // 平均值
+
+        /*     filter 過濾器 保留為true的 */
+
+        var arr = [12, 4, 8, 9]
+        var result = arr.filter(item => (item % 3 === 0) ? true : false)
+        console.log(result)
+        var result = arr.filter(item => item % 3 === 0)
+        console.log(result)
+
+        var arr = [{
+                title: '蘋果',
+                price: 10
+            },
+            {
+                title: '西瓜',
+                price: 20
+            },
+        ]
+        var result = arr.filter(json => json.price >= 20)
+        console.log(result)
+
+        /*  forEach 循環叠代 */
+
+        var arr = [12, 4, 8, 9]
+        var result = arr.forEach(item => console.log(item))
+        var result = arr.forEach((item, index) => console.log(item, index))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>${title}</h1>
+    <p>${content}</p>
+    <h1>標題</h1>
+    <p>內容</p>
+    <script>
+        /*  多了兩個新方法
+            startsWith
+            endsWith */
+        var url = 'https://www.google.com/'
+        console.log(url.startsWith('https'))
+        console.log(url.endsWith('com'))
+        // 都是 true
+
+        /* 字符串模版
+        使用反引號，${變量}
+        可以折行 */
+        let a = 12
+        let str1 = `asdf${a}`
+        console.log(str1)
+
+        let title = '標題'
+        let content = '內容'
+        let str = `<div>
+
+`
+        console.log(str)
+    </script>
+</body>
+
+</html>
